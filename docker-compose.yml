@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   base:
-    image: tschaffter/debian:base-${version}
+    image: ahayden/debian:base-${version}
     build:
       context: ./docker
       dockerfile: Dockerfile.base
@@ -16,7 +16,7 @@ services:
     command: /bin/bash
 
   user:
-    image: tschaffter/debian:user-${version}
+    image: ahayden/debian:user-${version}
     build:
       context: ./docker
       dockerfile: Dockerfile.user
@@ -29,11 +29,11 @@ services:
     restart: unless-stopped
     network_mode: host
     volumes:
-      - home-persist:/home/tschaffter/persist
+      - home-persist:/home/ahayden/persist
     command: /bin/bash
 
   docker:
-    image: tschaffter/debian:docker-${version}
+    image: ahayden/debian:docker-${version}
     build:
       context: ./docker
       dockerfile: Dockerfile.docker
@@ -46,12 +46,12 @@ services:
     restart: unless-stopped
     network_mode: host
     volumes:
-      - home-persist:/home/tschaffter/persist
+      - home-persist:/home/ahayden/persist
       - /var/run/docker.sock:/var/run/docker.sock
     command: /bin/bash
 
   python:
-    image: tschaffter/debian:python-${version}
+    image: ahayden/debian:python-${version}
     build:
       context: ./docker
       dockerfile: Dockerfile.python
@@ -66,11 +66,11 @@ services:
     # ports:
     #   - "8000:8000"
     volumes:
-      - home-persist:/home/tschaffter/persist
+      - home-persist:/home/ahayden/persist
     command: /bin/bash
 
   conda:
-    image: tschaffter/debian:conda-${version}
+    image: ahayden/debian:conda-${version}
     build:
       context: ./docker
       dockerfile: Dockerfile.conda
@@ -83,11 +83,11 @@ services:
     restart: unless-stopped
     network_mode: host
     volumes:
-      - home-persist:/home/tschaffter/persist
+      - home-persist:/home/ahayden/persist
     command: /bin/bash
 
   synapse:
-    image: tschaffter/debian:synapse-${version}
+    image: ahayden/debian:synapse-${version}
     build:
       context: ./docker
       dockerfile: Dockerfile.synapse
@@ -99,11 +99,11 @@ services:
     restart: unless-stopped
     network_mode: host
     volumes:
-      - home-persist:/home/tschaffter/persist
+      - home-persist:/home/ahayden/persist
     command: /bin/bash
 
   node:
-    image: tschaffter/debian:node-${version}
+    image: ahayden/debian:node-${version}
     build:
       context: ./docker
       dockerfile: Dockerfile.node
@@ -118,11 +118,11 @@ services:
       - "8080:8080"
     #   - "9000:9000"
     volumes:
-      - home-persist:/home/tschaffter/persist
+      - home-persist:/home/ahayden/persist
     command: /bin/bash
 
   cxx:
-    image: tschaffter/debian:cxx-${version}
+    image: ahayden/debian:cxx-${version}
     build:
       context: ./docker
       dockerfile: Dockerfile.cxx
@@ -134,11 +134,11 @@ services:
     restart: unless-stopped
     network_mode: host
     volumes:
-      - home-persist:/home/tschaffter/persist
+      - home-persist:/home/ahayden/persist
     command: /bin/bash
 
   esp:
-    image: tschaffter/debian:esp-${version}
+    image: ahayden/debian:esp-${version}
     build:
       context: ./docker
       dockerfile: Dockerfile.esp
@@ -150,7 +150,7 @@ services:
     restart: unless-stopped
     network_mode: host
     volumes:
-      - home-persist:/home/tschaffter/persist
+      - home-persist:/home/ahayden/persist
     command: /bin/bash
 
 volumes:

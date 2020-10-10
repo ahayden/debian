@@ -1,6 +1,6 @@
-FROM debian:buster-20200720-slim
+FROM debian:buster-slim
 
-LABEL maintainer="thomas.schaffter@gmail.com"
+LABEL maintainer="ahayden@users.noreply.github.com"
 
 ARG version
 RUN test -n "${version}"
