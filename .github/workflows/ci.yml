@@ -43,7 +43,7 @@ jobs:
           echo ::set-output \
             name=repository::ahayden/${{ github.event.repository.name }}
           echo ::set-output name=user::ahayden
-          if [[ ${GITHUB_REF} = refs/tags/* ]
+          if [[ ${GITHUB_REF} = refs/tags/* ]]
           then
             echo ::set-output name=version::${GITHUB_REF#refs/tags/}
             echo ::set-output name=push::true
