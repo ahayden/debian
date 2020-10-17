@@ -59,7 +59,7 @@ jobs:
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Build and Push Dockerfile.base
         uses: docker/build-push-action@v2
@@ -73,18 +73,18 @@ jobs:
             version=${{ steps.vars.outputs.version }}
           push: ${{ steps.vars.outputs.push }}
 
-#     - name: Build Dockerfile.user
-#       uses: docker/build-push-action@v1
-#       with:
-#         username: ${{ secrets.DOCKER_USERNAME }}
-#         password: ${{ secrets.DOCKER_PASSWORD }}
-#         repository: ${{ steps.vars.outputs.repository }}
-#         tags: user-latest, user-${{ steps.vars.outputs.version }}
-#         path: ./docker
-#         dockerfile: ./docker/Dockerfile.user
-#         build_args: "user=${{ steps.vars.outputs.user }},\
-#           version=${{ steps.vars.outputs.version }}"
-#         push: ${{ steps.vars.outputs.push }}
+      - name: Build Dockerfile.user
+        uses: docker/build-push-action@v2
+        with:
+          tags: | 
+            ${{ steps.vars.outputs.repository }}/user-latest,
+            ${{ steps.vars.outputs.repository }}/user-${{ steps.vars.outputs.version }}
+          context: ./docker
+          file: ./docker/Dockerfile.user
+          build_args: |
+            user=${{ steps.vars.outputs.user }},
+            version=${{ steps.vars.outputs.version }} 
+          push: ${{ steps.vars.outputs.push }}
 
 #     - name: Build Dockerfile.python
 #       uses: docker/build-push-action@v1
