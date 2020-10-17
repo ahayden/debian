@@ -68,7 +68,7 @@ jobs:
             ${{ steps.vars.outputs.repository }}/base-latest,
             ${{ steps.vars.outputs.repository }}/base-${{ steps.vars.outputs.version }}
           context: ./docker/
-          file: ./Dockerfile.base
+          file: ./docker/Dockerfile.base
           build_args: |
             version=${{ steps.vars.outputs.version }}
           push: ${{ steps.vars.outputs.push }}
