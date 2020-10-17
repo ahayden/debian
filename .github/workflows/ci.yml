@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set variables
+      - name: Checkout and set variables
         id: vars
         run: |
           echo ::set-output \
@@ -52,15 +52,23 @@ jobs:
             echo ::set-output name=push::false
           fi
 
-      - name: Build Dockerfile.base
-        uses: docker/build-push-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to DockerHub
+        users: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: ${{ steps.vars.outputs.repository }}
-          tags: base-latest, base-${{ steps.vars.outputs.version }}
-          path: ./docker
-          dockerfile: ./docker/Dockerfile.base
+
+      - name: Build and Push Dockerfile.base
+        uses: docker/build-push-action@v2
+        with:
+          tags: | 
+            ${{ steps.vars.outputs.repository }}/base-latest,
+            ${{ steps.vars.outputs.repository }}/base-${{ steps.vars.outputs.version }}
+          context: .
+          file: ./docker/Dockerfile.base
           build_args: "version=${{ steps.vars.outputs.version }}"
           push: ${{ steps.vars.outputs.push }}
 
