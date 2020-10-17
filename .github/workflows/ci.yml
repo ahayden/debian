@@ -41,7 +41,7 @@ jobs:
         id: vars
         run: |
           echo ::set-output \
-            name=repository::ahayden/${{ github.event.repository.name }}
+            name=repository::docker.io/ahayden/${{ github.event.repository.name }}
           echo ::set-output name=user::ahayden
           if [[ ${GITHUB_REF} = refs/tags/* ]]
           then
