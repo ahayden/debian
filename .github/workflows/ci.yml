@@ -67,8 +67,8 @@ jobs:
           tags: | 
             ${{ steps.vars.outputs.repository }}/base-latest,
             ${{ steps.vars.outputs.repository }}/base-${{ steps.vars.outputs.version }}
-          context: .
-          file: ./docker/Dockerfile.base
+          context: ./docker/
+          file: ./Dockerfile.base
           build_args: |
             version=${{ steps.vars.outputs.version }}
           push: ${{ steps.vars.outputs.push }}

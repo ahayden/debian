@@ -3,6 +3,7 @@ FROM debian:buster-slim
 LABEL maintainer="ahayden@users.noreply.github.com"
 
 ARG version
+RUN echo "received arg version as ${version}"
 RUN test -n "${version}"
 
 ENV version=${version}
