@@ -69,7 +69,8 @@ jobs:
             ${{ steps.vars.outputs.repository }}/base-${{ steps.vars.outputs.version }}
           context: .
           file: ./docker/Dockerfile.base
-          build_args: "version=${{ steps.vars.outputs.version }}"
+          build_args: 
+            - version=${{ steps.vars.outputs.version }}
           push: ${{ steps.vars.outputs.push }}
 
 #     - name: Build Dockerfile.user
