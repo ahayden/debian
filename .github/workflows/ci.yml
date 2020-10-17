@@ -69,7 +69,7 @@ jobs:
             ${{ steps.vars.outputs.repository }}/base-${{ steps.vars.outputs.version }}
           context: ./docker/
           file: ./docker/Dockerfile.base
-          build_args: |
+          build-args: |
             version=${{ steps.vars.outputs.version }}
           push: ${{ steps.vars.outputs.push }}
 
@@ -81,7 +81,7 @@ jobs:
             ${{ steps.vars.outputs.repository }}/user-${{ steps.vars.outputs.version }}
           context: ./docker
           file: ./docker/Dockerfile.user
-          build_args: |
+          build-args: |
             user=${{ steps.vars.outputs.user }},
             version=${{ steps.vars.outputs.version }} 
           push: ${{ steps.vars.outputs.push }}
